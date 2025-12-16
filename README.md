@@ -18,4 +18,4 @@
 git clone https://github.com/ваш-логин/college-it-portfolio.git
 2 Откройте файл index.html в браузере
 GitHub Pages
-Сайт доступен по адресу:  https://ваш-логин.github.io/college-it-portfolio/
+Сайт доступен по адресу:  https://mariabab715.github.io/college-it-portfolio/
