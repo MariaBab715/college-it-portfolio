@@ -1,160 +1,132 @@
-// Данные проектов
-const projects = [
-    {
-        title: "Электронный журнал",
-        description: "Система для ведения электронного журнала успеваемости студентов",
-        tech: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-        image: "project1.png"
-    },
-    {
-        title: "Сайт колледжа",
-        description: "Обновленная версия официального сайта колледжа",
-        tech: ["HTML", "CSS", "JavaScript", "React"],
-        image: "project2.png"
-    },
-    {
-        title: "Мобильное приложение",
-        description: "Приложение для студентов с расписанием и уведомлениями",
-        tech: ["React Native", "Firebase", "JavaScript"],
-        image: "project3.png"
-    },
-    {
-        title: "Система тестирования",
-        description: "Платформа для проведения онлайн-тестов и экзаменов",
-        tech: ["Python", "Django", "PostgreSQL"],
-        image: "project4.png"
-    }
-];
+// JavaScript для сайта IT-отдела Белоярского колледжа
+// Делаем: Бабкина Мария
 
-// Текущий слайд
-let currentSlide = 0;
+// Когда страница загрузилась
+window.onload = function () {
+    console.log("Сайт загружен!");
 
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', function () {
-    initProjectsSlider();
-    initTeamToggle();
-    initVisitCounter();
-    updateProjectsDisplay();
-});
+    // Настраиваем слайдер проектов
+    setupProjectsSlider();
+};
 
-// Инициализация слайдера проектов
-function initProjectsSlider() {
+// ========================================
+// СЛАЙДЕР ПРОЕКТОВ
+// ========================================
+
+function setupProjectsSlider() {
+    // Находим кнопки
     const prevBtn = document.getElementById('prev-project');
     const nextBtn = document.getElementById('next-project');
-    const currentSlideEl = document.getElementById('current-slide');
-    const totalSlidesEl = document.getElementById('total-slides');
 
-    totalSlidesEl.textContent = projects.length;
+    // Находим элементы для отображения проекта
+    const projectImageText = document.getElementById('project-image-text');
+    const projectTitle = document.getElementById('project-title');
+    const projectDescription = document.getElementById('project-description');
+    const projectTech = document.getElementById('project-tech');
 
-    prevBtn.addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + projects.length) % projects.length;
-        updateProjectsDisplay();
-        updateSliderIndicator();
-    });
+    // Находим элементы для номера проекта
+    const currentProjectNum = document.getElementById('current-project');
+    const totalProjectsNum = document.getElementById('total-projects');
 
-    nextBtn.addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % projects.length;
-        updateProjectsDisplay();
-        updateSliderIndicator();
-    });
+    // Всего проектов у нас 2
+    const totalProjects = 2;
+    let currentProject = 1;
 
-    function updateSliderIndicator() {
-        currentSlideEl.textContent = currentSlide + 1;
-    }
+    // Показываем сколько всего проектов
+    totalProjectsNum.textContent = totalProjects;
+    currentProjectNum.textContent = currentProject;
 
-    updateSliderIndicator();
-}
+    // Показываем первый проект при загрузке
+    showProject(currentProject);
 
-// Обновление отображения проектов
-function updateProjectsDisplay() {
-    const projectsGrid = document.querySelector('.projects-grid');
-    projectsGrid.innerHTML = '';
-
-    // Показываем 2 проекта начиная с текущего слайда
-    for (let i = 0; i < Math.min(2, projects.length); i++) {
-        const projectIndex = (currentSlide + i) % projects.length;
-        const project = projects[projectIndex];
-
-        const projectCard = document.createElement('div');
-        projectCard.className = 'project-card';
-        projectCard.innerHTML = `
-            <div class="project-image">
-                <p>${project.title}</p>
-            </div>
-            <div class="project-info">
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
-                <div class="project-tech">
-                    <strong>Технологии:</strong> ${project.tech.join(', ')}
-                </div>
-            </div>
-        `;
-
-        projectsGrid.appendChild(projectCard);
-    }
-}
-
-// Инициализация кнопки показа/скрытия команды
-function initTeamToggle() {
-    const toggleBtn = document.getElementById('toggle-team');
-    const teamContent = document.getElementById('team-content');
-    const toggleText = toggleBtn.querySelector('span');
-    const toggleIcon = toggleBtn.querySelector('i');
-
-    toggleBtn.addEventListener('click', function () {
-        teamContent.classList.toggle('hidden');
-
-        if (teamContent.classList.contains('hidden')) {
-            toggleText.textContent = 'Показать команду';
-            toggleIcon.className = 'fas fa-chevron-down';
+    // Когда нажимаем "назад"
+    prevBtn.onclick = function () {
+        if (currentProject > 1) {
+            currentProject--;
         } else {
-            toggleText.textContent = 'Скрыть команду';
-            toggleIcon.className = 'fas fa-chevron-up';
+            currentProject = totalProjects; // переходим к последнему
         }
-    });
-}
+        currentProjectNum.textContent = currentProject;
+        showProject(currentProject);
+    };
 
-// Инициализация счетчика посещений
-function initVisitCounter() {
-    const visitCountEl = document.getElementById('visit-count');
-    const visitTextEl = document.getElementById('visit-text');
-    const resetBtn = document.getElementById('reset-counter');
-
-   
-    let visitCount = localStorage.getItem('portfolioVisits');
-
-    if (visitCount === null) {
-        visitCount = 0;
-    } else {
-        visitCount = parseInt(visitCount);
-    }
-
-    // Увеличиваем счетчик
-    visitCount++;
-
-    // Сохраняем в localStorage
-    localStorage.setItem('portfolioVisits', visitCount);
-
-    // Обновляем отображение
-    updateVisitDisplay(visitCount);
-
-    // Обработчик сброса счетчика
-    resetBtn.addEventListener('click', function () {
-        localStorage.setItem('portfolioVisits', 0);
-        updateVisitDisplay(0);
-    });
-
-    function updateVisitDisplay(count) {
-        visitCountEl.textContent = count;
-
-        let text;
-        if (count % 10 === 1 && count % 100 !== 11) {
-            text = `${count} раз`;
-        } else if ([2, 3, 4].includes(count % 10) && ![12, 13, 14].includes(count % 100)) {
-            text = `${count} раза`;
+    // Когда нажимаем "вперед"
+    nextBtn.onclick = function () {
+        if (currentProject < totalProjects) {
+            currentProject++;
         } else {
-            text = `${count} раз`;
+            currentProject = 1; // переходим к первому
+        }
+        currentProjectNum.textContent = currentProject;
+        showProject(currentProject);
+    };
+
+    // Функция для отображения проекта
+    function showProject(projectNumber) {
+        console.log("Показываем проект:", projectNumber);
+
+        if (projectNumber === 1) {
+            // Проект 1: Электронный журнал
+            projectImageText.textContent = "Электронный журнал";
+            projectTitle.textContent = "Электронный журнал";
+            projectDescription.textContent = "Система для ведения электронного журнала успеваемости студентов";
+            projectTech.innerHTML = '<strong>Технологии:</strong> HTML, CSS, JavaScript, PHP, MySQL';
+        } else if (projectNumber === 2) {
+            // Проект 2: Сайт колледжа
+            projectImageText.textContent = "Сайт колледжа";
+            projectTitle.textContent = "Сайт колледжа";
+            projectDescription.textContent = "Обновленная версия официального сайта колледжа";
+            projectTech.innerHTML = '<strong>Технологии:</strong> HTML, CSS, JavaScript, React<br>' +
+                '<a href="https://bpkhmao.ru/" target="_blank" class="project-link">' +
+                'Перейти на сайт →' +
+                '</a>';
         }
 
-        visitTextEl.textContent = text;
-    }}
+        // Анимация смены проекта
+        const card = document.querySelector('.project-card');
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+
+        setTimeout(() => {
+            card.style.transition = 'all 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 100);
+    }
+}
+
+// ========================================
+// ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ
+// ========================================
+
+// Делаем плавную прокрутку при клике на ссылки в меню
+document.querySelectorAll('nav a').forEach(link => {
+    link.onclick = function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    };
+});
+
+// Делаем анимацию при наведении на карточки команды
+document.querySelectorAll('.team-card').forEach(card => {
+    card.onmouseenter = function () {
+        this.style.transform = 'scale(1.05)';
+        this.style.transition = 'transform 0.3s';
+    };
+
+    card.onmouseleave = function () {
+        this.style.transform = 'scale(1)';
+    };
+});
+
+// Простое сообщение в консоль
+console.log("JavaScript для IT-портфолио готов!");
+console.log("Разработчики: Бабкина Мария, Гапизова Зарина, Грищанович Кирилл");
