@@ -2,21 +2,22 @@
 .DS_Store
 Thumbs.db
 
-# Зависимости
-node_modules/
+ # Зависимост
+иnode_modules
 
-# Среда разработки
-.env
-.env.local
+/ # Среда разработ
+ки.e
+nv.env.loc
 
-# Сборка проекта
-dist/
-build/
+al # Сборка прое
+ктаdi
+st/bui
 
-# IDE
-.vscode/
-.idea/
+ld/ #
+ IDE.vsc
+ode/.i
 
-# Логи
-*.log
-npm-debug.log*
+dea/ #
+ Логи
+*.lognpm-debug
+.log*
