@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT-отдел Белоярского колледжа</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>IT-отдел Белоярского колледжа</h1>
+                <p>Разработка, инновации, технологии</p>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#projects">Проекты</a></li>
+                    <li><a href="#team">Команда</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main">
+        <!-- Герой секция -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Добро пожаловать в IT-отдел</h2>
+                <p>Мы создаем инновационные решения для образовательного процесса и развиваем цифровую среду колледжа
+                </p>
+                <a href="#projects" class="btn">Наши проекты</a>
+            </div>
+        </section>
+
+        <!-- Секция проектов -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2>Наши проекты</h2>
+                <div class="projects-slider">
+                    <div class="slider-controls">
+                        <button id="prev-project" class="slider-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button id="next-project" class="slider-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="projects-grid">
+                        <!-- Проект 1 -->
+                        <div class="project-card">
+                            <div class="project-image">
+                                <p>Электронный журнал</p>
+                            </div>
+                            <div class="project-info">
+                                <h3>Электронный журнал</h3>
+                                <p>Система для ведения электронного журнала успеваемости студентов</p>
+                                <div class="project-tech">
+                                    <strong>Технологии:</strong> HTML, CSS, JavaScript, PHP, MySQL
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Проект 2 -->
+                        <div class="project-card">
+                            <div class="project-image">
+                                <p>Сайт колледжа</p>
+                            </div>
+                            <div class="project-info">
+                                <h3>Сайт колледжа</h3>
+                                <p>Обновленная версия официального сайта колледжа</p>
+                                <div class="project-tech">
+                                    <strong>Технологии:</strong> HTML, CSS, JavaScript, React
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-indicator">
+                        <span id="current-slide">1</span> / <span id="total-slides">4</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция команды -->
+        <section id="team" class="team">
+            <div class="container">
+                <div class="team-header">
+                    <h2>Наша команда</h2>
+                    <button id="toggle-team" class="toggle-btn">
+                        <span>Скрыть команду</span>
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                </div>
+                <div id="team-content" class="team-content">
+                    <div class="team-grid">
+                        <!-- Участник 1: Бабкина Мария -->
+                        <div class="team-card">
+                            <div class="team-photo">
+                                <!-- Замените это на реальное фото -->
+                                <img src="images/maria.jpg" alt="Бабкина Мария" class="team-img">
+                                <!-- ИЛИ используйте заглушку если фото нет -->
+                                <div class="photo-placeholder" style="display: none;">
+                                    <span class="initials">БМ</span>
+                                </div>
+                            </div>
+                            <h3>Бабкина Мария</h3>
+                            <p class="team-role">Frontend разработчик</p>
+                            <p>Специалист по адаптивной верстке и JavaScript</p>
+                            <a href="#" class="github-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+
+                        <!-- Участник 2: Гапизова Зарина -->
+                        <div class="team-card">
+                            <div class="team-photo">
+                                <!-- Замените это на реальное фото -->
+                                <img src="images/zarina.jpg" alt="Гапизова Зарина" class="team-img">
+                            </div>
+                            <h3>Гапизова Зарина</h3>
+                            <p class="team-role">Дизайнер / Frontend разработчик</p>
+                            <p>Создает пользовательские интерфейсы, графику и веб-сайты</p>
+                            <a href="https://github.com/ZarinaGap" class="github-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub: ZarinaGap
+                            </a>
+                        </div>
+
+                        <!-- Участник 3: Гришанович Кирилл -->
+                        <div class="team-card">
+                            <div class="team-photo">
+                                <!-- Замените это на реальное фото -->
+                                <img src="images/kirill.jpg" alt="Гришанович Кирилл" class="team-img">
+                            </div>
+                            <h3>Гришанович Кирилл</h3>
+                            <p class="team-role">Backend разработчик</p>
+                            <p>Работает с серверной частью и базами данных</p>
+                            <a href="#" class="github-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Счетчик посещений -->
+        <section class="counter">
+            <div class="container">
+                <h3>Статистика посещений</h3>
+                <div class="counter-display">
+                    <i class="fas fa-eye"></i>
+                    <span id="visit-count">0</span>
+                </div>
+                <p>Вы посетили этот сайт <span id="visit-text">0 раз</span></p>
+                <button id="reset-counter" class="btn-secondary">Сбросить счетчик</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>IT-отдел Белоярского колледжа</h3>
+                    <p>© 2024 Все права защищены</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-envelope"></i> it-department@beloyar-college.edu</p>
+                    <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Мы в соцсетях</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
